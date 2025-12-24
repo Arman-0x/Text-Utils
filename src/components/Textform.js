@@ -55,12 +55,11 @@ if (text.trim()) {
 <label htmlFor="myBox" className="form-label"></label>
 <textarea className="form-control" value={text} onChange={handleonchange} style={{backgroundColor: props.mode==='dark'?'#13466e':'white', color: props.mode==='dark'?'white':'#042743'}} id="myBox" rows="8"></textarea>
 </div>
-<button className="btn btn-primary mx-1" onClick={handleupclick}>lower to upper case</button>
-<button className="btn btn-primary mx-1" onClick={handleupclick1}>upper case to lower case</button>
-<button className="btn btn-primary mx-1" onClick={handlecopy}>Copy text</button>
-<button className="btn btn-primary mx-1" onClick={handleclear}>clear text</button>
-<button className="btn btn-primary mx-1" onClick={handleextraspace}>Clear extra space</button>
-
+<button  disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleupclick}>lower to upper case</button>
+<button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleupclick1}>upper case to lower case</button>
+<button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handlecopy}>Copy text</button>
+<button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleclear}>clear text</button>
+<button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleextraspace}>Clear extra space</button>
 
 
 </div>
@@ -68,9 +67,9 @@ if (text.trim()) {
 <div className="container my-3" style={{color: props.mode==='dark'?'white':'#042743' }} >
   <h2>text summary</h2>
   <p>There are {wordCount} words and length of total characters is {text.length}</p>
-  <p>{0.008 * text.split(" ").length} word reads per minute</p>
+  <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} word reads per minute</p>
   <h2>preview</h2>
-  <p>{text.length>0?text:"please enter the text"}</p>
+  <p>{text.length>0?text:"Nothing to Preview"}</p>
 </div>
 
     </>
